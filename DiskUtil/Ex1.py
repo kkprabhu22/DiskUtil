@@ -14,7 +14,7 @@ def listfun(dir):
 
 
 def main():
-    print("Select the option")
+    print("Select the options")
     print("1-Show current directory Details")
     print("2-Show Parent Directory Details")
     dir=input()
