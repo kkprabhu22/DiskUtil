@@ -6,12 +6,16 @@ def listfun(dir):
 
     for filename in filenames:
         if(os.path.isdir(filename)):
-            print("directory")
-        else:
+            folder=os.listdir(filename)
+            for files in folder:
                 path=os.path.abspath(os.path.join(dir,filename))
                 size=os.stat(filename)
-                print(filename,"\t",path,"\t\t",size.st_size)
-                    
+                print(files,"\t",path,"\t\t",size.st_size)
+        else:
+            path=os.path.abspath(os.path.join(dir,filename))
+            size=os.stat(filename)
+            print(filename,"\t",path,"\t\t",size.st_size)
+
 def main():
     print("Select the options")
     print("1-Show current directory Details")
