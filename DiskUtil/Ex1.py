@@ -9,8 +9,12 @@ def diskspace(dir):
             path=os.path.abspath(os.path.join(root,names))
             disksize=disksize+os.stat(path).st_size
     print("*******************************************************************************************")
-    print("Directory size in Bytes- ",disksize)
+    print("Directory size in Bytes- ",ByteToMb(disksize),"M")
     print("*******************************************************************************************")
+
+def ByteToMb(size):
+    size=format(size/1000000,".4f")
+    return size
 
 
 def listfun(dir):
@@ -23,7 +27,7 @@ def listfun(dir):
             times=time.ctime(os.path.getmtime(path))
             print("Filename -  ",filename)
             print("File Absolute path -  ",path)
-            print("File Size in Bytes -  ",size)
+            print("File Size in Bytes -  ",ByteToMb(size),"M")
             print("File last Modification time -  ",times)
             print("*******************************************************************************************")
 def main():
