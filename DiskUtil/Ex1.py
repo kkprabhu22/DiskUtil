@@ -38,7 +38,7 @@ def main():
          elif(dir =="2"):
              listfun("..")
          elif(dir =="3"):
-             print("Input absolute path of the directory in the following format ----C:/Users/admin/Downloads")
+             print("Input Absolute path of the directory in the following format ----C:/Users/admin/Downloads")
              dirpath=input()
              listfun(dirpath)
          else:
