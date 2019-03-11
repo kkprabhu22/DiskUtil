@@ -2,7 +2,19 @@ import os
 import sys
 import time
 
+def diskspace(dir):
+    disksize=0
+    for root,dirs,files in os.walk(dir):
+        for names in files:
+            path=os.path.abspath(os.path.join(root,names))
+            disksize=disksize+os.stat(path).st_size
+    print("*******************************************************************************************")
+    print("Directory size in Bytes- ",disksize)
+    print("*******************************************************************************************")
+
+
 def listfun(dir):
+    diskspace(dir)
     for root,dirs,files in os.walk(dir):
         for names in files:
             filename=names
@@ -17,16 +29,18 @@ def listfun(dir):
 def main():
     while True:
          print("Select the options")
-         print("1-Show current Directory Details")
+         print("1-Show Current Directory Details")
          print("2-Show Parent Directory Details")
+         print("3- Specific Directory Details ")
          dir=input()
          if(dir =="1"):
              listfun(".")
          elif(dir =="2"):
              listfun("..")
-        #  elif(dir =="3"):
-        #      listfun(dir)
-        #      print("working oncode part")
+         elif(dir =="3"):
+             print("Input absolute path of the directory in the following format ----C:/Users/admin/Downloads")
+             dirpath=input()
+             listfun(dirpath)
          else:
              sys.exit(0)
 
