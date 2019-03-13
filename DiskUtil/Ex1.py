@@ -8,7 +8,6 @@ def diskspace(dir):
         for names in files:
             path=os.path.abspath(os.path.join(root,names))
             disksize=disksize+os.stat(path).st_size
-    print("*******************************************************************************************")
     print("Directory size in Bytes- ",ByteToMb(disksize),"M")
     print("*******************************************************************************************")
 
@@ -25,27 +24,35 @@ def listfun(dir):
             path=os.path.abspath(os.path.join(root,names))
             size=os.stat(path).st_size
             times=time.ctime(os.path.getmtime(path))
-            print("Filename -  ",filename)
-            print("File Absolute path -  ",path)
-            print("File Size in Bytes -  ",ByteToMb(size),"M")
-            print("File last Modification time -  ",times)
-            print("*******************************************************************************************")
+            print(filename,"\t\t\t",path,"\t\t\t",ByteToMb(size),"M","\t\t\t",times)
+
+
+def checkoption(arg):
+    checkpoint =1
+    for choices in arg :
+        if checkpoint == 1:
+            checkpoint+=1
+            continue
+        else:
+            if(choices== "-h" or choices== "-help"):
+                print("Available Help Options")
+                print("-c - Current Directory")
+                print("-p - Parent Directory")
+                print(" Or  can pass absolute bath as a command line argument")
+            elif(choices== "-c"):
+                print("Current Directory Details")
+                listfun(".")
+            elif(choices== "-p"):
+                print("Parent Directory Details")
+                listfun("..")
+            else:
+                listfun(choices)
+            
+
 def main():
-    while True:
-         print("Select the options")
-         print("1-Show Current Directory Details")
-         print("2-Show Parent Directory Details")
-         print("3- Specific Directory Details ")
-         dir=input()
-         if(dir =="1"):
-             listfun(".")
-         elif(dir =="2"):
-             listfun("..")
-         elif(dir =="3"):
-             print("Input Absolute path of the directory in the following format ----C:/Users/admin/Downloads")
-             dirpath=input()
-             listfun(dirpath)
-         else:
-             sys.exit(0)
+    if(len(sys.argv)>0 and len(sys.argv)==1):
+        print("Pass -h or -help as Command line argument for help")
+    else:
+                checkoption(sys.argv)
 
 main()
